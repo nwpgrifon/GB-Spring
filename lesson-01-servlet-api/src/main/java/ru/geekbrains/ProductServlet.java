@@ -36,15 +36,13 @@ public class ProductServlet extends HttpServlet {
             wr.println("<th>Name</th>");
             wr.println("</tr>");
             wr.println("<tr>");
-            wr.println("<td>" + byId.getId() + "</td");
-            wr.println("<td>" + byId.getName() + "</td");
-            // TODO <a href = 'product?id=12'></a>
+            wr.println("<td>" + byId.getId() + "</td>");
+            wr.println("<td>" + byId.getName() + "</td>");
             wr.println("</tr>");
             wr.println("</table>");
 
         } else if (req.getPathInfo() == null || req.getPathInfo().equals("")) {
             wr.println("<table>");
-
             wr.println("<tr>");
             wr.println("<th>Id<th>");
             wr.println("<th>Name</th>");
@@ -53,9 +51,9 @@ public class ProductServlet extends HttpServlet {
             for (Product product :
                     productRepository.findAll()) {
                 wr.println("<tr>");
-                wr.println("<td>" + product.getId() + "</td");
-                wr.println("<td>" + product.getName() + "</td");
-                // TODO <a href = 'product?id=12'></a>
+                wr.println("<td>" + product.getId() + "</td>");
+                String foo = "product?id=" + product.getId();
+                wr.println("<td>  <a href = " + foo + ">"  + product.getName() + "</a> </td>");
                 wr.println("</tr>");
             }
             wr.println("</table>");
