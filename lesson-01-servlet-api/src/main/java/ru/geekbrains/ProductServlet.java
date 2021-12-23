@@ -1,5 +1,6 @@
 package ru.geekbrains;
 
+import com.sun.jdi.LongValue;
 import ru.geekbrains.persist.Product;
 import ru.geekbrains.persist.ProductRepository;
 
@@ -25,9 +26,25 @@ public class ProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PrintWriter wr = resp.getWriter();
-        if (req.getPathInfo() == null || req.getPathInfo().equals("")) {
+        var idParameter = req.getParameter("id");
+
+        if (idParameter != null) {
+            Product byId = productRepository.findById(Long.parseLong(idParameter));
             wr.println("<table>");
-            
+            wr.println("<tr>");
+            wr.println("<th>Id</th>");
+            wr.println("<th>Name</th>");
+            wr.println("</tr>");
+            wr.println("<tr>");
+            wr.println("<td>" + byId.getId() + "</td");
+            wr.println("<td>" + byId.getName() + "</td");
+            // TODO <a href = 'product?id=12'></a>
+            wr.println("</tr>");
+            wr.println("</table>");
+
+        } else if (req.getPathInfo() == null || req.getPathInfo().equals("")) {
+            wr.println("<table>");
+
             wr.println("<tr>");
             wr.println("<th>Id<th>");
             wr.println("<th>Name</th>");
@@ -38,6 +55,7 @@ public class ProductServlet extends HttpServlet {
                 wr.println("<tr>");
                 wr.println("<td>" + product.getId() + "</td");
                 wr.println("<td>" + product.getName() + "</td");
+                // TODO <a href = 'product?id=12'></a>
                 wr.println("</tr>");
             }
             wr.println("</table>");
