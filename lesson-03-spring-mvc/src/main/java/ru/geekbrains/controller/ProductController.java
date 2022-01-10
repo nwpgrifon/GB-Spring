@@ -31,10 +31,16 @@ public class ProductController {
                 .orElseThrow(() -> new NotFoundException("Product not found")));
         return "product_form";
     }
+    @PostMapping("/search")
+    public String findProduct(Long id, Model model) {
+        model.addAttribute("products", productRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Product not found")));
+        return "product";
+    }
 
     @GetMapping("/new")
     public String create(Model model) {
-        // TODO model.addAttribute("product", ?????);
+        model.addAttribute("product", new Product());
         return "product_form";
     }
 
