@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+  http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--<bean class="ru.geekbrains.persist.ProductRepository" id="productRepository"/>-->
+    <!--    <bean class="ru.geekbrains.ProductService" id="productService">-->
+    <!--    <constructor-arg ref="productRepository"/>-->
+    <!--</bean>-->
+    <bean class="ru.geekbrains.persist.ProductRepositoryImpl" id="productRepository"/>
+    <bean class="ru.geekbrains.ProductService" id="productService">
+        <constructor-arg ref="productRepository"/>
+    </bean>
+
+    <bean scope = "prototype" class="ru.geekbrains.persist.Cart" id="cart">
+        <constructor-arg ref="productRepository"/>
+    </bean>
+
+
+</beans>

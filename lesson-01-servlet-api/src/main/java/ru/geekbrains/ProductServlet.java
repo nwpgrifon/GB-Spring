@@ -52,7 +52,7 @@ public class ProductServlet extends HttpServlet {
                     productRepository.findAll()) {
                 wr.println("<tr>");
                 wr.println("<td>" + product.getId() + "</td>");
-                String foo = "product?id=" + product.getId();
+                String foo = "product?id=" + product.getId();//
                 wr.println("<td>  <a href = " + foo + ">"  + product.getName() + "</a> </td>");
                 wr.println("</tr>");
             }
